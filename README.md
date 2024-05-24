@@ -2,6 +2,8 @@
 
 Virtual VR driver to develop easily without the need for a real physical headset
 
+![FalconBMS screenshot](./static/screenshot.png?raw=true)
+
 ## Installation
 
 1. Clone git repository
