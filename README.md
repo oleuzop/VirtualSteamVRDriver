@@ -1,8 +1,13 @@
 # Virtual SteamVR driver
 
-Virtual VR driver to develop easily without the need for a real physical headset
+Virtual VR driver to develop easily without the need for a physical headset
 
 ![FalconBMS screenshot](./static/screenshot.png?raw=true)
+
+## Prerequisites
+
+- Steam & SteamVR installed in the computer
+- If using OpenXR then SteamVR must be set as OpenXR default runtime
 
 ## Installation
 
@@ -18,7 +23,7 @@ git clone https://github.com/oleuzop/VirtualSteamVRDriver.git
 git submodule update --init --recursive
 ```
 
-## Usage
+## Virtual headset configuration
 
 Configure virtual headset
 
