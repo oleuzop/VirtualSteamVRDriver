@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="src\device_provider.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\driverlog.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hmd_device_driver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hmd_display_component.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Configuration.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\device_provider.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\driverlog.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hmd_device_driver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hmd_display_component.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hmd_driver_factory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Configuration.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{1d0ce834-af38-4f7a-a2be-024e40e3d8e6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
