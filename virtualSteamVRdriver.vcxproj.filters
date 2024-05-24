@@ -45,5 +45,7 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include="LICENSE" />
+    <None Include="install_driver_Debug.bat" />
+    <None Include="install_driver_Release.bat" />
   </ItemGroup>
 </Project>

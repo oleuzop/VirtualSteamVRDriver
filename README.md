@@ -19,3 +19,7 @@ git submodule update --init --recursive
 ## Usage
 
 Configure virtual headset
+
+## License:
+MIT -> https://en.wikipedia.org/wiki/MIT_License
+Use at your own risk!! 

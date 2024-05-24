@@ -34,6 +34,8 @@
     <ClCompile Include="src\hmd_driver_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="install_driver_Debug.bat" />
+    <None Include="install_driver_Release.bat" />
     <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
@@ -92,25 +94,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehmd\bin\win32</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>driver_simplehmd</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehmd\bin\win32</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>driver_simplehmd</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehmd\bin\win64</OutDir>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
     <TargetName>driver_simplehmd</TargetName>
     <IntDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehmd\bin\win64</OutDir>
+    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</OutDir>
     <TargetName>driver_simplehmd</TargetName>
     <IntDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -125,8 +127,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../dependencies/windows/SDL2/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>x64/SDL2.lib;x64/SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -148,8 +151,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../dependencies/windows/SDL2/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>x64/SDL2.lib;x64/SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
