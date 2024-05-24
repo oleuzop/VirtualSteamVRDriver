@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33717.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "driver", "simplehmd.vcxproj", "{1A008D17-0760-4179-8D42-995C5FF1C8D6}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualSteamVRDriver", "virtualSteamVRdriver.vcxproj", "{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A008D17-0760-4179-8D42-995C5FF1C8D6}.Debug|x64.ActiveCfg = Debug|x64
-		{1A008D17-0760-4179-8D42-995C5FF1C8D6}.Debug|x64.Build.0 = Debug|x64
-		{1A008D17-0760-4179-8D42-995C5FF1C8D6}.Debug|x86.ActiveCfg = Debug|Win32
-		{1A008D17-0760-4179-8D42-995C5FF1C8D6}.Debug|x86.Build.0 = Debug|Win32
-		{1A008D17-0760-4179-8D42-995C5FF1C8D6}.Release|x64.ActiveCfg = Release|x64
-		{1A008D17-0760-4179-8D42-995C5FF1C8D6}.Release|x64.Build.0 = Release|x64
-		{1A008D17-0760-4179-8D42-995C5FF1C8D6}.Release|x86.ActiveCfg = Release|Win32
-		{1A008D17-0760-4179-8D42-995C5FF1C8D6}.Release|x86.Build.0 = Release|Win32
+		{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}.Debug|x64.ActiveCfg = Debug|x64
+		{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}.Debug|x64.Build.0 = Debug|x64
+		{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}.Debug|x86.ActiveCfg = Debug|Win32
+		{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}.Debug|x86.Build.0 = Debug|Win32
+		{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}.Release|x64.ActiveCfg = Release|x64
+		{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}.Release|x64.Build.0 = Release|x64
+		{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}.Release|x86.ActiveCfg = Release|Win32
+		{17F47FFF-14E1-46AF-A1B6-8581FF05C8D5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
