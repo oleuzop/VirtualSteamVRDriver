@@ -42,4 +42,8 @@
       <UniqueIdentifier>{1d0ce834-af38-4f7a-a2be-024e40e3d8e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="LICENSE" />
+  </ItemGroup>
 </Project>

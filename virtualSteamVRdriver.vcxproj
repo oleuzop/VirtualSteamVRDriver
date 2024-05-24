@@ -33,6 +33,10 @@
     <ClCompile Include="src\hmd_display_component.cpp" />
     <ClCompile Include="src\hmd_driver_factory.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE" />
+    <None Include="README.md" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
