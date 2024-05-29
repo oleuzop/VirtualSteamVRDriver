@@ -77,10 +77,10 @@ void MyHMDDisplayComponent::GetEyeOutputViewport(vr::EVREye eEye, uint32_t* pnX,
 //-----------------------------------------------------------------------------
 void MyHMDDisplayComponent::GetProjectionRaw(vr::EVREye eEye, float* pfLeft, float* pfRight, float* pfTop, float* pfBottom)
 {
-	*pfLeft = gConfiguration.Left(vr::EVREye::Eye_Left);
-	*pfRight = gConfiguration.Right(vr::EVREye::Eye_Left);
-	*pfTop = gConfiguration.Top(vr::EVREye::Eye_Left);
-	*pfBottom = gConfiguration.Bottom(vr::EVREye::Eye_Left);
+	*pfLeft = gConfiguration.Left(eEye);
+	*pfRight = gConfiguration.Right(eEye);
+	*pfTop = gConfiguration.Top(eEye);
+	*pfBottom = gConfiguration.Bottom(eEye);
 }
 
 //-----------------------------------------------------------------------------
