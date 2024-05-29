@@ -5,3 +5,5 @@ rd /s /q "C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehm
 mkdir "C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehmd"
 
 xcopy "%cd%\driver\simplehmd\" "C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehmd\" /E/H/Y
+
+pause
