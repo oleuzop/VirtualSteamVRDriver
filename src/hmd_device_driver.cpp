@@ -36,6 +36,52 @@ MyHMDControllerDeviceDriver::MyHMDControllerDeviceDriver() {
 	DriverLog( "My Dummy HMD Model Number: %s", my_hmd_model_number_.c_str() );
 	DriverLog( "My Dummy HMD Serial Number: %s", my_hmd_serial_number_.c_str() );
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	char headset_type[1024];
+	vr::VRSettings()->GetString(my_hmd_display_settings_section, "headset_type", headset_type, sizeof(headset_type));
+	std::string headset_type_str(headset_type);
+	HeadsetType headsetType = HeadsetType::UNDEFINED_HEADSET;
+	if (headset_type_str == "QUEST3") {
+		headsetType = HeadsetType::QUEST3;
+	}
+	else if (headset_type_str == "PICO4") {
+		headsetType = HeadsetType::PICO4;
+	}
+	else if (headset_type_str == "WMR_EMULATOR") {
+		headsetType = HeadsetType::WMR_EMULATOR;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	char quality_type[1024];
+	vr::VRSettings()->GetString(my_hmd_display_settings_section, "quality_type", quality_type, sizeof(quality_type));
+	std::string quality_type_str(quality_type);
+	QualityType qualityType = QualityType::UNDEFINED_QUALITY;
+	if (quality_type_str == "POTATO") {
+		qualityType = QualityType::POTATO;
+	}
+	else if (quality_type_str == "LOW") {
+		qualityType = QualityType::LOW;
+	}
+	else if (quality_type_str == "MEDIUM") {
+		qualityType = QualityType::MEDIUM;
+	}
+	else if (quality_type_str == "HIGH") {
+		qualityType = QualityType::HIGH;
+	}
+	else if (quality_type_str == "ULTRA") {
+		qualityType = QualityType::ULTRA;
+	}
+	else if (quality_type_str == "GODLIKE") {
+		qualityType = QualityType::GODLIKE;
+	}
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	float resolutionFactor = vr::VRSettings()->GetFloat(my_hmd_display_settings_section, "resolution_factor");
+
+	gConfiguration.Init(headsetType, qualityType, resolutionFactor);
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 	display_configuration_.window_x = 0;
 	display_configuration_.window_y = 0;
 	display_configuration_.window_width = gConfiguration.ResWindowX();

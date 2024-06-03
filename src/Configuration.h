@@ -1,10 +1,34 @@
 #pragma once
 
+enum HeadsetType
+{
+	UNDEFINED_HEADSET = 0,
+	QUEST3,
+	//QUEST_PRO,
+	PICO4,
+	WMR_EMULATOR,
+	NUMBER_OF_HEADSETS
+};
+
+enum QualityType
+{
+	UNDEFINED_QUALITY = 0,
+	POTATO,
+	LOW,
+	MEDIUM,
+	HIGH,
+	ULTRA,
+	GODLIKE,
+	NUMBER_OF_QUALITIES
+};
+
 class Configuration
 {
 public:
 	Configuration();
 	~Configuration();
+
+	void Init(const HeadsetType& headsetType, const QualityType& qualityType, const float& resolutionFactor = 1.0f);
 
 	inline int FpsRender() { return fpsRender; }
 
@@ -20,6 +44,9 @@ public:
 	inline const float& Top(const int& eye) { return top[eye]; }
 	inline const float& Bottom(const int& eye) { return bottom[eye]; }
 
+private:
+	void InitQuest3Resolution(const QualityType& qualityType);
+	void InitPico4Resolution(const QualityType& qualityType);
 
 private:
 	int fpsRender;

@@ -57,13 +57,13 @@ void MyDeviceProvider::RunFrame()
 
 
 	//Now, process events that were submitted for this frame.
-	vr::VREvent_t vrevent{};
-	while ( vr::VRServerDriverHost()->PollNextEvent( &vrevent, sizeof( vr::VREvent_t ) ) )
-	{
-		if (vrevent.eventType != vr::VREvent_None) {
-			DriverLog((std::string("RECEIVED EVENT => ") + std::to_string(vrevent.eventType)).c_str());
-		}
-	}
+	//vr::VREvent_t vrevent{};
+	//while ( vr::VRServerDriverHost()->PollNextEvent( &vrevent, sizeof( vr::VREvent_t ) ) )
+	//{
+	//	if (vrevent.eventType != vr::VREvent_None) {
+	//		DriverLog((std::string("RECEIVED EVENT => ") + std::to_string(vrevent.eventType)).c_str());
+	//	}
+	//}
 }
 
 //-----------------------------------------------------------------------------
