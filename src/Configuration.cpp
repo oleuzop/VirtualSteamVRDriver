@@ -90,6 +90,37 @@ void Configuration::InitPico4Resolution(const QualityType& qualityType)
 	}
 }
 
+void Configuration::InitPimaxCrystalResolution(const QualityType& qualityType)
+{
+	switch (qualityType)
+	{
+	case QualityType::POTATO:
+		resRenderX = int(4312 * 0.47692307692f);
+		resRenderY = int(5100 * 0.47692307692f);
+		break;
+	case QualityType::LOW:
+		resRenderX = int(4312 * 0.56923076923f);
+		resRenderY = int(5100 * 0.56923076923f);
+		break;
+	case QualityType::MEDIUM:
+		resRenderX = int(4312 * 0.66153846153f);
+		resRenderY = int(5100 * 0.66153846153f);
+		break;
+	case QualityType::HIGH:
+		resRenderX = int(4312 * 0.81538461538f);
+		resRenderY = int(5100 * 0.81538461538f);
+		break;
+	case QualityType::ULTRA:
+		resRenderX = int(4312 * 0.87692307692f);
+		resRenderY = int(5100 * 0.87692307692f);
+		break;
+	case QualityType::GODLIKE:
+		resRenderX = 4312;
+		resRenderY = 5100;
+		break;
+	}
+}
+
 void Configuration::Init(
 	const HeadsetType& headsetType,
 	const QualityType& qualityType,
@@ -181,6 +212,34 @@ void Configuration::Init(
 		bottom[1] = (float)atan(1.279942f);
 
 		InitPico4Resolution(qualityType);
+		break;
+
+	case HeadsetType::PIMAX_CRYSTAL:
+		fpsRender = 120;
+
+		//Left eye raw LRBT values:
+		//    left:        -1.264092
+		//    right:        0.889501
+		//    bottom:      -1.274264
+		//    top:          1.274264
+		//
+		//Right eye raw LRBT values:
+		//    left:        -0.889501
+		//    right:        1.264092
+		//    bottom:      -1.274264
+		//    top:          1.274264
+
+		left[0] = (float)atan(-1.264092f);
+		right[0] = (float)atan(0.889501f);
+		top[0] = (float)atan(-1.274264f);
+		bottom[0] = (float)atan(1.274264f);
+
+		left[1] = (float)atan(-0.889501f);
+		right[1] = (float)atan(1.264092f);
+		top[1] = (float)atan(-1.274264f);
+		bottom[1] = (float)atan(1.274264f);
+
+		InitPimaxCrystalResolution(qualityType);
 		break;
 
 	case HeadsetType::WMR_EMULATOR:

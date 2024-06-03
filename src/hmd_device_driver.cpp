@@ -50,6 +50,9 @@ MyHMDControllerDeviceDriver::MyHMDControllerDeviceDriver() {
 	else if (headset_type_str == "PICO4") {
 		headsetType = HeadsetType::PICO4;
 	}
+	else if (headset_type_str == "PIMAX_CRYSTAL") {
+		headsetType = HeadsetType::PIMAX_CRYSTAL;
+	}
 	else if (headset_type_str == "WMR_EMULATOR") {
 		headsetType = HeadsetType::WMR_EMULATOR;
 	}
