@@ -44,6 +44,9 @@ MyHMDControllerDeviceDriver::MyHMDControllerDeviceDriver() {
 	if (headset_type_str == "QUEST3") {
 		headsetType = HeadsetType::QUEST3;
 	}
+	else if (headset_type_str == "QUEST_PRO") {
+		headsetType = HeadsetType::QUEST_PRO;
+	}
 	else if (headset_type_str == "PICO4") {
 		headsetType = HeadsetType::PICO4;
 	}

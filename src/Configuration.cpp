@@ -127,6 +127,34 @@ void Configuration::Init(
 		InitQuest3Resolution(qualityType);
 		break;
 
+	case HeadsetType::QUEST_PRO:
+		fpsRender = 72;
+
+		//Left eye raw LRBT values :
+		//	left: -1.376382
+		//	right : 0.839100
+		//	bottom : -1.376382
+		//	top : 0.900404
+
+		//Right eye raw LRBT values :
+		//	left: -0.839100
+		//	right : 1.376382
+		//	bottom : -1.376382
+		//	top : 0.900404
+
+		left[0] = (float)atan(-1.376382f);
+		right[0] = (float)atan(0.839100f);
+		top[0] = (float)atan(-1.376382f);
+		bottom[0] = (float)atan(0.900404f);
+
+		left[1] = (float)atan(-0.839100f);
+		right[1] = (float)atan(1.376382f);
+		top[1] = (float)atan(-1.376382f);
+		bottom[1] = (float)atan(0.900404f);
+
+		InitQuest3Resolution(qualityType);
+		break;
+
 	case HeadsetType::PICO4:
 		fpsRender = 72;
 
