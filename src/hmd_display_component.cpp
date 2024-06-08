@@ -1,12 +1,20 @@
 //============ Copyright (c) Valve Corporation, All rights reserved. ============
 #include "hmd_display_component.h"
 
-#include "driverlog.h"
-#include <string.h>
-
 #include "Configuration.h"
 
-//extern MixedVr::LastFrame lastFrame;
+#include "driverlog.h"
+#include <string.h>
+#include <chrono>
+#include <thread>
+
+
+
+static const long long GetTime() {
+	auto now = std::chrono::high_resolution_clock::now();
+	auto duration = now.time_since_epoch();
+	return std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
+}
 
 //-----------------------------------------------------------------------------
 // DISPLAY DRIVER METHOD DEFINITIONS
@@ -14,7 +22,11 @@
 
 MyHMDDisplayComponent::MyHMDDisplayComponent(const MyHMDDisplayDriverConfiguration &config)
 	: config_( config ), frameCounter_(0) {
-	
+
+	period_ = (long long)(1'000'000'000.0 / (double)config_.fps);
+	DriverLog("Period: %d", period_);
+
+	lastVSyncTime_ = GetTime();
 }
 
 MyHMDDisplayComponent::~MyHMDDisplayComponent() {
@@ -120,12 +132,20 @@ void MyHMDDisplayComponent::Present(const vr::PresentInfo_t* pPresentInfo, uint3
 
 /** Block until the last presented buffer start scanning out. */
 void MyHMDDisplayComponent::WaitForPresent() {
+
+
+	auto diff = GetTime() - lastVSyncTime_;
+	if (diff < period_) {
+		std::this_thread::sleep_for(std::chrono::nanoseconds(diff));
+	}
+
+	lastVSyncTime_ = GetTime();
 }
 
 /** Provides timing data for synchronizing with display. */
 bool MyHMDDisplayComponent::GetTimeSinceLastVsync(float* pfSecondsSinceLastVsync, uint64_t* pulFrameCounter) {
 
-	*pfSecondsSinceLastVsync = 0.0f;
+	*pfSecondsSinceLastVsync = (GetTime() - lastVSyncTime_) / 1'000'000'000.0;
 	*pulFrameCounter = frameCounter_;
 	return true;
 }

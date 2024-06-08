@@ -47,5 +47,9 @@ public:
 
 private:
 	MyHMDDisplayDriverConfiguration config_;
+
+	long long lastVSyncTime_;
 	int64_t frameCounter_;
+
+	long long period_;
 };

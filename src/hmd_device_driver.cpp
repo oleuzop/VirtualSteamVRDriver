@@ -167,12 +167,13 @@ vr::EVRInitError MyHMDControllerDeviceDriver::Activate( uint32_t unObjectId )
 	vr::VRProperties()->SetStringProperty(container, vr::Prop_DriverVersion_String, (std::to_string(PVR_SERVER_VERSION >> 24) + "." + std::to_string((PVR_SERVER_VERSION >> 16) % 0x100)).c_str());
 	vr::VRProperties()->SetBoolProperty(container, vr::Prop_Firmware_ForceUpdateRequired_Bool, false); //TODO implement
 	//VRProperties()->SetBoolProperty(container, Prop_ViveSystemButtonFixRequired_Bool, false); // ??
-	vr::VRProperties()->SetBoolProperty(container, vr::Prop_ReportsTimeSinceVSync_Bool, false);
+	//vr::VRProperties()->SetBoolProperty(container, vr::Prop_ReportsTimeSinceVSync_Bool, false);
 	vr::VRProperties()->SetUint64Property(container, vr::Prop_CurrentUniverseId_Uint64, 0x808682); // <= P+V+R ascii
 	vr::VRProperties()->SetBoolProperty(container, vr::Prop_DisplayAllowNightMode_Bool, true); // ??
 	// -------------------------------------------------------------------------------------------------
 	vr::VRProperties()->SetFloatProperty(container, vr::Prop_DisplayFrequency_Float, (float)display_configuration_.fps);
 	// -------------------------------------------------------------------------------------------------
+	DriverLog("Display frequency: %d Hz", (float)display_configuration_.fps);
 
 	// avoid "not fullscreen" warnings from vrmonitor
 	vr::VRProperties()->SetBoolProperty( container, vr::Prop_IsOnDesktop_Bool, false );
