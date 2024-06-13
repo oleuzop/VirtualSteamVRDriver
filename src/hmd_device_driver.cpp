@@ -98,6 +98,8 @@ MyHMDControllerDeviceDriver::MyHMDControllerDeviceDriver() {
 
 	// Initiate my display component
 	my_display_component_ = std::make_unique< MyHMDDisplayComponent >(display_configuration_);
+
+	eventHooks_.run();
 }
 
 MyHMDControllerDeviceDriver::~MyHMDControllerDeviceDriver() {

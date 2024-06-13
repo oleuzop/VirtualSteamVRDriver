@@ -10,6 +10,7 @@
 #include <vector>
 #include <array>
 
+#include "eventHooks.h"
 
 //-----------------------------------------------------------------------------
 // Purpose: Represents a single tracked device in the system.
@@ -45,4 +46,6 @@ private:
 	std::atomic< int > frame_number_;
 	std::atomic< bool > is_active_;
 	std::atomic< uint32_t > device_index_;
+
+	EvenHooks eventHooks_;
 };

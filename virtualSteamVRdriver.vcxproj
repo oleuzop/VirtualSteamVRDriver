@@ -22,6 +22,7 @@
     <ClInclude Include="src\Configuration.h" />
     <ClInclude Include="src\device_provider.h" />
     <ClInclude Include="src\driverlog.h" />
+    <ClInclude Include="src\eventHooks.h" />
     <ClInclude Include="src\hmd_device_driver.h" />
     <ClInclude Include="src\hmd_display_component.h" />
   </ItemGroup>
@@ -29,6 +30,7 @@
     <ClCompile Include="src\Configuration.cpp" />
     <ClCompile Include="src\device_provider.cpp" />
     <ClCompile Include="src\driverlog.cpp" />
+    <ClCompile Include="src\eventHooks.cpp" />
     <ClCompile Include="src\hmd_device_driver.cpp" />
     <ClCompile Include="src\hmd_display_component.cpp" />
     <ClCompile Include="src\hmd_driver_factory.cpp" />

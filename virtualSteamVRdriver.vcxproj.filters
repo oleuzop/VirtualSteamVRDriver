@@ -16,6 +16,9 @@
     <ClInclude Include="src\Configuration.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\eventHooks.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\device_provider.cpp">
@@ -34,6 +37,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Configuration.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\eventHooks.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
