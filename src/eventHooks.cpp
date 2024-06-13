@@ -2,7 +2,7 @@
 
 #include "driverlog.h"
 
-#define POS_FACTOR  0.0005f
+#define POS_FACTOR  0.001f
 #define ROT_FACTOR  0.1f
 
 HHOOK hKeyboardHook;
@@ -10,7 +10,7 @@ HHOOK hMouseHook;
 float lastPoseX, lastPoseY;
 Headpose pose;
 bool isControlActive = false;
-bool isMiddleButtonActive = false;
+bool isRightButtonActive = false;
 
 
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
@@ -54,23 +54,16 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam) {
         if (pMouseStruct != NULL) {
             switch (wParam) {
 
-//            case WM_LBUTTONDOWN:
-//                DriverLog("Left Button Down\n");
-//                break;
-//            case WM_RBUTTONDOWN:
-//                DriverLog("Right Button Down\n");
-//                break;
-
-            case WM_MBUTTONDOWN:
-                isMiddleButtonActive = true;
+            case WM_RBUTTONDOWN:
+                isRightButtonActive = true;
                 break;
-            case WM_MBUTTONUP:
-                isMiddleButtonActive = false;
+            case WM_RBUTTONUP:
+                isRightButtonActive = false;
                 break;
 
             case WM_MOUSEMOVE:
                 if (isControlActive) {
-                    if (isMiddleButtonActive) {
+                    if (isRightButtonActive) {
                         pose.pos.x += float(pMouseStruct->pt.x - lastPoseX) * POS_FACTOR;
                         pose.pos.y += float(pMouseStruct->pt.y - lastPoseY) * POS_FACTOR;
                         //DriverLog("Pose move %f, %f\n", pose.pos.x, pose.pos.y);
@@ -78,7 +71,7 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam) {
                     else {
                         pose.angles.h += float(pMouseStruct->pt.x - lastPoseX) * ROT_FACTOR;
                         pose.angles.p += float(pMouseStruct->pt.y - lastPoseY) * ROT_FACTOR;
-                        DriverLog("Angles move %f, %f\n", pose.angles.h, pose.angles.p);
+                        //DriverLog("Angles move %f, %f\n", pose.angles.h, pose.angles.p);
                     }
                 }
                 lastPoseX = float(pMouseStruct->pt.x);
@@ -108,7 +101,7 @@ void Unhook() {
     UnhookWindowsHookEx(hMouseHook);
 }
 
-const float EvenHooks::getPoseX() { return pose.pos.x; }
+const float EvenHooks::getPoseX() { return -pose.pos.x; }
 const float EvenHooks::getPoseY() { return -pose.pos.y; }
 
 const float EvenHooks::getHeading() { return -pose.angles.h; }

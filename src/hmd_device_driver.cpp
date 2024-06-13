@@ -315,8 +315,8 @@ vr::DriverPose_t MyHMDControllerDeviceDriver::GetPose()
 	);
 
 	pose.vecPosition[0] = eventHooks_.getPoseX();
-	pose.vecPosition[1] = eventHooks_.getPoseY() + 1.0f;
-	pose.vecPosition[2] = 0.0f;
+	pose.vecPosition[1] = 1.0f;
+	pose.vecPosition[2] = eventHooks_.getPoseY();
 
 	// The pose we provided is valid.
 	// This should be set is
