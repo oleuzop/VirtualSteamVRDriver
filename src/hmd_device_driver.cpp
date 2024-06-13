@@ -6,12 +6,61 @@
 
 #include "Configuration.h"
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 // Let's create some variables for strings used in getting settings.
 // This is the section where all of the settings we want are stored. A section name can be anything,
 // but if you want to store driver specific settings, it's best to namespace the section with the driver identifier
 // ie "<my_driver>_<section>" to avoid collisions
 static const char *my_hmd_main_settings_section = "driver_simplehmd";
 static const char *my_hmd_display_settings_section = "simplehmd_display";
+
+
+vr::HmdQuaternion_t MultiplyQuaternions(const vr::HmdQuaternion_t& q1, const vr::HmdQuaternion_t& q2) {
+	vr::HmdQuaternion_t result;
+	result.w = q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z;
+	result.x = q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y;
+	result.y = q1.w * q2.y - q1.x * q2.z + q1.y * q2.w + q1.z * q2.x;
+	result.z = q1.w * q2.z + q1.x * q2.y - q1.y * q2.x + q1.z * q2.w;
+	return result;
+}
+
+vr::HmdQuaternion_t CreateQuaternionFromHeadingAndPitch(float heading_degrees, float pitch_degrees) {
+	// Convert degrees to radians
+	float heading_rad = heading_degrees * float(M_PI) / 180.0f;
+	float pitch_rad = pitch_degrees * float(M_PI) / 180.0f;
+
+	// Calculate half angles
+	float half_heading = heading_rad * 0.5f;
+	float half_pitch = pitch_rad * 0.5f;
+
+	// Calculate sin and cos of half angles
+	float sin_half_heading = sin(half_heading);
+	float cos_half_heading = cos(half_heading);
+	float sin_half_pitch = sin(half_pitch);
+	float cos_half_pitch = cos(half_pitch);
+
+	// Quaternion representing heading around the Y-axis
+	vr::HmdQuaternion_t qHeading;
+	qHeading.x = 0.0f;
+	qHeading.y = sin_half_heading;
+	qHeading.z = 0.0f;
+	qHeading.w = cos_half_heading;
+
+	// Quaternion representing pitch around the X-axis
+	vr::HmdQuaternion_t qPitch;
+	qPitch.x = sin_half_pitch;
+	qPitch.y = 0.0f;
+	qPitch.z = 0.0f;
+	qPitch.w = cos_half_pitch;
+
+	// Combine quaternions (order matters: pitch * heading)
+	vr::HmdQuaternion_t qRotation = MultiplyQuaternions(qHeading, qPitch); // Adjust this function as needed
+
+	return qRotation;
+}
+
 
 MyHMDControllerDeviceDriver::MyHMDControllerDeviceDriver() {
 
@@ -259,10 +308,14 @@ vr::DriverPose_t MyHMDControllerDeviceDriver::GetPose()
 	// These need to be set to be valid quaternions. The device won't appear otherwise.
 	pose.qWorldFromDriverRotation.w = 1.f;
 	pose.qDriverFromHeadRotation.w = 1.f;
-	pose.qRotation.w = 1.f;
 
-	pose.vecPosition[0] = 0.0f;
-	pose.vecPosition[1] = sin(frame_number_ * 0.0025) * 0.01f + 1.0f; // slowly move the hmd up and down.
+	pose.qRotation = CreateQuaternionFromHeadingAndPitch(
+		eventHooks_.getHeading(),
+		eventHooks_.getPitch()
+	);
+
+	pose.vecPosition[0] = eventHooks_.getPoseX();
+	pose.vecPosition[1] = eventHooks_.getPoseY() + 1.0f;
 	pose.vecPosition[2] = 0.0f;
 
 	// The pose we provided is valid.

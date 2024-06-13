@@ -2,18 +2,49 @@
 
 #include "driverlog.h"
 
+#define POS_FACTOR  0.0005f
+#define ROT_FACTOR  0.1f
+
 HHOOK hKeyboardHook;
 HHOOK hMouseHook;
+float lastPoseX, lastPoseY;
+Headpose pose;
+bool isControlActive = false;
+bool isMiddleButtonActive = false;
+
 
 LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
     if (nCode == HC_ACTION) {
         KBDLLHOOKSTRUCT* pKeyBoard = (KBDLLHOOKSTRUCT*)lParam;
-        if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) {
-            char key = (char)pKeyBoard->vkCode;
-            //DriverLog("KEY PRESS:\t%s\n", key);
-            DriverLog("KEY PRESS:\n");
+
+        switch (pKeyBoard->vkCode) {
+
+//        case VK_RETURN:
+//            std::cout << "ENTER key pressed\n";
+//            break;
+//        case VK_ESCAPE:
+//            std::cout << "ESC key pressed\n";
+//            break;
+//        case 'A':
+//            std::cout << "A key pressed\n";
+//            break;
+
+        case VK_LCONTROL:
+            if (!isControlActive && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)) {
+                isControlActive = true;
+                DriverLog("DOWN\n");
+            }
+            if (isControlActive && (wParam == WM_KEYUP || wParam == WM_SYSKEYUP)) {
+                isControlActive = false;
+                DriverLog("UP\n");
+            }
+            break;
+
+        default:
+            break;
         }
     }
+
     return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
 }
 
@@ -22,15 +53,36 @@ LRESULT CALLBACK MouseProc(int nCode, WPARAM wParam, LPARAM lParam) {
         MSLLHOOKSTRUCT* pMouseStruct = (MSLLHOOKSTRUCT*)lParam;
         if (pMouseStruct != NULL) {
             switch (wParam) {
-            case WM_LBUTTONDOWN:
-                DriverLog("Left Button Down\n");
+
+//            case WM_LBUTTONDOWN:
+//                DriverLog("Left Button Down\n");
+//                break;
+//            case WM_RBUTTONDOWN:
+//                DriverLog("Right Button Down\n");
+//                break;
+
+            case WM_MBUTTONDOWN:
+                isMiddleButtonActive = true;
                 break;
-            case WM_RBUTTONDOWN:
-                DriverLog("Right Button Down\n");
+            case WM_MBUTTONUP:
+                isMiddleButtonActive = false;
                 break;
+
             case WM_MOUSEMOVE:
-                DriverLog("Mouse move\n");
-                //std::cout << "Mouse Move to (" << pMouseStruct->pt.x << ", " << pMouseStruct->pt.y << ")\n";
+                if (isControlActive) {
+                    if (isMiddleButtonActive) {
+                        pose.pos.x += float(pMouseStruct->pt.x - lastPoseX) * POS_FACTOR;
+                        pose.pos.y += float(pMouseStruct->pt.y - lastPoseY) * POS_FACTOR;
+                        //DriverLog("Pose move %f, %f\n", pose.pos.x, pose.pos.y);
+                    }
+                    else {
+                        pose.angles.h += float(pMouseStruct->pt.x - lastPoseX) * ROT_FACTOR;
+                        pose.angles.p += float(pMouseStruct->pt.y - lastPoseY) * ROT_FACTOR;
+                        DriverLog("Angles move %f, %f\n", pose.angles.h, pose.angles.p);
+                    }
+                }
+                lastPoseX = float(pMouseStruct->pt.x);
+                lastPoseY = float(pMouseStruct->pt.y);
                 break;
             }
             std::cout.flush();
@@ -55,6 +107,12 @@ void Unhook() {
     UnhookWindowsHookEx(hKeyboardHook);
     UnhookWindowsHookEx(hMouseHook);
 }
+
+const float EvenHooks::getPoseX() { return pose.pos.x; }
+const float EvenHooks::getPoseY() { return -pose.pos.y; }
+
+const float EvenHooks::getHeading() { return -pose.angles.h; }
+const float EvenHooks::getPitch() { return -pose.angles.p; }
 
 EvenHooks::EvenHooks() {
 }
