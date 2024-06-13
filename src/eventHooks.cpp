@@ -101,8 +101,8 @@ void Unhook() {
     UnhookWindowsHookEx(hMouseHook);
 }
 
-const float EvenHooks::getPoseX() { return -pose.pos.x; }
-const float EvenHooks::getPoseY() { return -pose.pos.y; }
+const float EvenHooks::getPoseX() { return pose.pos.x; }
+const float EvenHooks::getPoseY() { return pose.pos.y; }
 
 const float EvenHooks::getHeading() { return -pose.angles.h; }
 const float EvenHooks::getPitch() { return -pose.angles.p; }
