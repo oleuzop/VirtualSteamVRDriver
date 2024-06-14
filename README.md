@@ -28,7 +28,7 @@ git submodule update --init --recursive
 1. Steam & SteamVR must be selected
 2. Open VS solution
 3. Compile (Release preferred)
-4. Go to project folder and execute ```install_driver_Release.bat``` (Debug version if compiled debug)
+4. Go to project folder and execute ```install_driver_Release.bat``` (Debug version if compiled debug). This will copy virtual driver inside SteamVR driver folder.
 5. Inside ```C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehmd\resources\settings\default.vrsettings``` it's possible to find which headset and resolution is chosen.
 ```
 	"simplehmd_display": {
