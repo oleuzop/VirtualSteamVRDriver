@@ -32,11 +32,9 @@ LRESULT CALLBACK KeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
         case VK_LCONTROL:
             if (!isControlActive && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)) {
                 isControlActive = true;
-                DriverLog("DOWN\n");
             }
             if (isControlActive && (wParam == WM_KEYUP || wParam == WM_SYSKEYUP)) {
                 isControlActive = false;
-                DriverLog("UP\n");
             }
             break;
 
