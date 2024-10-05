@@ -102,6 +102,9 @@ MyHMDControllerDeviceDriver::MyHMDControllerDeviceDriver() {
 	else if (headset_type_str == "PIMAX_CRYSTAL") {
 		headsetType = HeadsetType::PIMAX_CRYSTAL;
 	}
+	else if (headset_type_str == "PIMAX_8K") {
+		headsetType = HeadsetType::PIMAX_8K;
+	}
 	else if (headset_type_str == "WMR_EMULATOR") {
 		headsetType = HeadsetType::WMR_EMULATOR;
 	}
