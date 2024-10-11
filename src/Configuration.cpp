@@ -121,33 +121,33 @@ void Configuration::InitPimaxCrystalResolution(const QualityType& qualityType)
 	}
 }
 
-void Configuration::InitPimax8KResolution(const QualityType& qualityType)
+void Configuration::InitPimax8KXResolution(const QualityType& qualityType)
 {
 	switch (qualityType)
 	{
 	case QualityType::POTATO:
-		resRenderX = int(3840 * 0.47692307692f);
-		resRenderY = int(2160 * 0.47692307692f);
+		resRenderX = int(4622 * 0.47692307692f);
+		resRenderY = int(3948 * 0.47692307692f);
 		break;
 	case QualityType::LOW:
-		resRenderX = int(3840 * 0.56923076923f);
-		resRenderY = int(2160 * 0.56923076923f);
+		resRenderX = int(4622 * 0.56923076923f);
+		resRenderY = int(3948 * 0.56923076923f);
 		break;
 	case QualityType::MEDIUM:
-		resRenderX = int(3840 * 0.66153846153f);
-		resRenderY = int(2160 * 0.66153846153f);
+		resRenderX = int(4622 * 0.66153846153f);
+		resRenderY = int(3948 * 0.66153846153f);
 		break;
 	case QualityType::HIGH:
-		resRenderX = int(3840 * 0.81538461538f);
-		resRenderY = int(2160 * 0.81538461538f);
+		resRenderX = int(4622 * 0.81538461538f);
+		resRenderY = int(3948 * 0.81538461538f);
 		break;
 	case QualityType::ULTRA:
-		resRenderX = int(3840 * 0.87692307692f);
-		resRenderY = int(2160 * 0.87692307692f);
+		resRenderX = int(4622 * 0.87692307692f);
+		resRenderY = int(3948 * 0.87692307692f);
 		break;
 	case QualityType::GODLIKE:
-		resRenderX = 3840;
-		resRenderY = 2160;
+		resRenderX = 4622;
+		resRenderY = 3948;
 		break;
 	}
 }
@@ -273,98 +273,60 @@ void Configuration::Init(
 		InitPimaxCrystalResolution(qualityType);
 		break;
 
-	case HeadsetType::PIMAX_8K:
+	case HeadsetType::PIMAX_8K_X_NORMAL:
 		fpsRender = 90;
 
-//		Left eye raw LRBT values :
-//		left:        -1.742203
-//		right :       1.346154
-//		bottom :     -1.306135
-//		top :         1.306135
-//		
-//		Left eye raw FOV :
-//		left:       -60.14 deg
-//		right :      53.39 deg
-//		bottom :    -52.56 deg
-//		top :        52.56 deg
-//		horiz. :    113.54 deg
-//		vert. :     105.12 deg
-//		
-//		Left eye head FOV :
-//		left:       -70.14 deg
-//		right :      43.39 deg
-//		bottom :    -52.14 deg
-//		top :        52.14 deg
-//		horiz. :    113.54 deg
-//		vert. :     104.27 deg
-//		
-//		Right eye HAM mesh :
-//		original vertices : 120, triangles : 40
-//		optimized vertices : 48, n - gons : 4
-//		mesh area : 8.73 %
-//		
-//		Right eye to head transformation matrix :
-//		[[ 0.984808, -0., -0.173648, 0.033502],
-//		[0., 1., -0., 0.],
-//		[0.173648, 0., 0.984808, 0.]]
-//		
-//		Right eye raw LRBT values :
-//		left:        -1.346154
-//		right :       1.742203
-//		bottom :     -1.306135
-//		top :         1.306135
-//		
-//		Right eye raw FOV :
-//		left:       -53,39 deg
-//		right :      60,14 deg
-//		bottom :    -52,56 deg
-//		top :        52,56 deg
-//		horiz. :    113,54 deg
-//		vert. :     105,12 deg
-//		
-//		Right eye head FOV :
-//		left:       -43,39 deg
-//		right:       70,14 deg
-//		bottom:     -52,14 deg
-//		top:         52,14 deg
-//		horiz.:     113,54 deg
-//		vert.:      104,27 deg
-//		
-//		Total FOV :
-//		horizontal: 140.29 deg
-//		vertical :  104.27 deg
-//		diagonal :  134.88 deg
-//		overlap :    86.79 deg
-//		
-//		View geometry :
-//		left view rotation : -10.0 deg
-//		right view rotation : 10.0 deg
-//		reported IPD : 67.0 mm
-
-		left[0] = -1.742203f;
-		right[0] = 1.346154f;
-		top[0] = -1.306135f;
-		bottom[0] = 1.306135f;
-
-		left[1] = -1.346154f;
-		right[1] = 1.742203f;
-		top[1] = -1.306135f;
-		bottom[1] = 1.306135f;
-
-		//////////////////////////////////////////
-		// Real rendering resolution
-		//left[0]   = -2.768506888f;
-		//right[0]  = 0.9453224349f;
-		//top[0]    = -1.286408332f;
-		//bottom[0] = 1.286408332f;
+		//Left eye head FOV:
+		//    left:       -70.14 deg
+		//    right:       41.47 deg
+		//    bottom:     -51.35 deg
+		//    top:         51.35 deg
 		//
-		//left[1]   = -0.9453224349f;
-		//right[1]  = 2.768506888f;
-		//top[1]    = -1.286408332f;
-		//bottom[1] = 1.286408332f;
-		//////////////////////////////////////////
+		//Right eye head FOV:
+		//    left:       -41.47 deg
+		//    right:       70.14 deg
+		//    bottom:     -51.35 deg
+		//    top:         51.35 deg
 
-		InitPimax8KResolution(qualityType);
+		left[0]   = -70.14f * M_PI / 180.0f;
+		right[0]  =  41.47f * M_PI / 180.0f;
+		top[0]    = -51.35f * M_PI / 180.0f;
+		bottom[0] =  51.35f * M_PI / 180.0f;
+
+		left[1]   = -41.47 * M_PI / 180.0f;
+		right[1]  =  70.14 * M_PI / 180.0f;
+		top[1]    = -51.35 * M_PI / 180.0f;
+		bottom[1] =  51.35 * M_PI / 180.0f;
+
+		InitPimax8KXResolution(qualityType);
+		break;
+
+	case HeadsetType::PIMAX_8K_X_LARGE:
+		fpsRender = 90;
+
+		//Left eye head FOV:
+		//    left:       -80.14 deg
+		//    right:       41.45 deg
+		//    bottom:     -51.35 deg
+		//    top:         51.35 deg
+		//
+		//Right eye head FOV:
+		//    left:       -41.45 deg
+		//    right:       80.14 deg
+		//    bottom:     -51.35 deg
+		//    top:         51.35 deg
+
+		left[0]   = -80.14f * M_PI / 180.0f;
+		right[0]  = 41.47f * M_PI / 180.0f;
+		top[0]    = -51.35f * M_PI / 180.0f;
+		bottom[0] = 51.35f * M_PI / 180.0f;
+
+		left[1]   = -41.47 * M_PI / 180.0f;
+		right[1]  = 80.14 * M_PI / 180.0f;
+		top[1]    = -51.35 * M_PI / 180.0f;
+		bottom[1] = 51.35 * M_PI / 180.0f;
+
+		InitPimax8KXResolution(qualityType);
 		break;
 
 	case HeadsetType::WMR_EMULATOR:
