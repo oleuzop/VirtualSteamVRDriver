@@ -27,34 +27,66 @@ Configuration::Configuration() {
 Configuration::~Configuration() {
 }
 
+void Configuration::InitHpG2Resolution(const QualityType& qualityType)
+{
+
+	switch (qualityType)
+	{
+	case QualityType::POTATO:
+		resRenderX = int(2688 * 0.47692307692f);
+		resRenderY = int(2784 * 0.47692307692f);
+		break;
+	case QualityType::LOW:
+		resRenderX = int(2688 * 0.56923076923f);
+		resRenderY = int(2784 * 0.56923076923f);
+		break;
+	case QualityType::MEDIUM:
+		resRenderX = int(2688 * 0.66153846153f);
+		resRenderY = int(2784 * 0.66153846153f);
+		break;
+	case QualityType::HIGH:
+		resRenderX = int(2688 * 0.81538461538f);
+		resRenderY = int(2784 * 0.81538461538f);
+		break;
+	case QualityType::ULTRA:
+		resRenderX = int(2688 * 0.87692307692f);
+		resRenderY = int(2784 * 0.87692307692f);
+		break;
+	case QualityType::GODLIKE:
+		resRenderX = 2688;
+		resRenderY = 2784;
+		break;
+	}
+}
+
 void Configuration::InitQuest3Resolution(const QualityType& qualityType)
 {
 
 	switch (qualityType)
 	{
 	case QualityType::POTATO:
-		resRenderX = 1440;
-		resRenderY = 1536;
+		resRenderX = 2248;
+		resRenderY = 2192;
 		break;
 	case QualityType::LOW:
-		resRenderX = 1728;
-		resRenderY = 1824;
+		resRenderX = 2248;
+		resRenderY = 2192;
 		break;
 	case QualityType::MEDIUM:
-		resRenderX = 2016;
-		resRenderY = 2112;
+		resRenderX = 2248;
+		resRenderY = 2192;
 		break;
 	case QualityType::HIGH:
-		resRenderX = 2496;
-		resRenderY = 2592;
+		resRenderX = 2248;
+		resRenderY = 2192;
 		break;
 	case QualityType::ULTRA:
-		resRenderX = 2688;
-		resRenderY = 2784;
+		resRenderX = 2248;
+		resRenderY = 2192;
 		break;
 	case QualityType::GODLIKE:
-		resRenderX = 3072;
-		resRenderY = 3216;
+		resRenderX = 2248;
+		resRenderY = 2192;
 		break;
 	}
 }
@@ -161,6 +193,34 @@ void Configuration::Init(
 	// https://risa2000.github.io/hmdgdb/
 	switch (headsetType)
 	{
+	case HeadsetType::HP_G2:
+		fpsRender = 90;
+
+		//Left eye raw LRBT values:
+		//    left:        -1.167639
+		//    right:        0.991869
+		//    bottom:      -1.056352
+		//    top:          1.056971
+
+		//Right eye raw LRBT values:
+		//    left:        -0.993480
+		//    right:        1.172087
+		//    bottom:      -1.054743
+		//    top:          1.056776
+
+		left[0]   = -1.167639;
+		right[0]  =  0.991869;
+		top[0]    = -1.056352;
+		bottom[0] =  1.056971;
+
+		left[1]   = -0.993480;
+		right[1]  =  1.172087;
+		top[1]    = -1.054743;
+		bottom[1] =  1.056776;
+
+		InitQuest3Resolution(qualityType);
+		break;
+
 	case HeadsetType::QUEST3:
 		fpsRender = 72;
 
@@ -186,7 +246,7 @@ void Configuration::Init(
 		top[1] = -1.428148f;
 		bottom[1] = 0.965689f;
 
-		InitQuest3Resolution(qualityType);
+		InitHpG2Resolution(qualityType);
 		break;
 
 	case HeadsetType::QUEST_PRO:

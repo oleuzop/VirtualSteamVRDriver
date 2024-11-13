@@ -10,6 +10,7 @@ enum HeadsetType
 	PIMAX_8K_X_NORMAL,
 	PIMAX_8K_X_LARGE,
 	WMR_EMULATOR,
+	HP_G2,
 	NUMBER_OF_HEADSETS
 };
 
@@ -48,6 +49,7 @@ public:
 	inline const float& Bottom(const int& eye) { return bottom[eye]; }
 
 private:
+	void InitHpG2Resolution(const QualityType& qualityType);
 	void InitQuest3Resolution(const QualityType& qualityType);
 	void InitPico4Resolution(const QualityType& qualityType);
 	void InitPimaxCrystalResolution(const QualityType& qualityType);
