@@ -132,11 +132,11 @@ void MyHMDDisplayComponent::Present(const vr::PresentInfo_t* pPresentInfo, uint3
 
 /** Block until the last presented buffer start scanning out. */
 void MyHMDDisplayComponent::WaitForPresent() {
+	auto targetTime = lastVSyncTime_ + period_;
 
-
-	auto diff = GetTime() - lastVSyncTime_;
-	if (diff < period_) {
-		std::this_thread::sleep_for(std::chrono::nanoseconds(diff));
+	// Spin-wait with _mm_pause() to reduce power consumption
+	while (GetTime() < targetTime) {
+		_mm_pause(); // Hint to the CPU to reduce power consumption and avoid pipeline stalls
 	}
 
 	lastVSyncTime_ = GetTime();
