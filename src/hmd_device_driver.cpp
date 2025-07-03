@@ -229,7 +229,7 @@ vr::EVRInitError MyHMDControllerDeviceDriver::Activate( uint32_t unObjectId )
 	//VRProperties()->SetBoolProperty(container, Prop_ViveSystemButtonFixRequired_Bool, false); // ??
 	//vr::VRProperties()->SetBoolProperty(container, vr::Prop_ReportsTimeSinceVSync_Bool, false);
 	vr::VRProperties()->SetUint64Property(container, vr::Prop_CurrentUniverseId_Uint64, 0x808682); // <= P+V+R ascii
-	vr::VRProperties()->SetBoolProperty(container, vr::Prop_DisplayAllowNightMode_Bool, true); // ??
+	vr::VRProperties()->SetBoolProperty(container, vr::Prop_DisplayAllowNightMode_Bool, true); // ??	
 	// -------------------------------------------------------------------------------------------------
 	vr::VRProperties()->SetFloatProperty(container, vr::Prop_DisplayFrequency_Float, (float)display_configuration_.fps);
 	// -------------------------------------------------------------------------------------------------
@@ -318,14 +318,21 @@ vr::DriverPose_t MyHMDControllerDeviceDriver::GetPose()
 	pose.qWorldFromDriverRotation.w = 1.f;
 	pose.qDriverFromHeadRotation.w = 1.f;
 
+	float heading = eventHooks_.getHeading();
+	heading += 1.0f * sin(0.0125f * frame_number_);
+
 	pose.qRotation = CreateQuaternionFromHeadingAndPitch(
-		eventHooks_.getHeading(),
+		heading,
 		eventHooks_.getPitch()
 	);
 
 	pose.vecPosition[0] = eventHooks_.getPoseX();
 	pose.vecPosition[1] = 1.0f;
 	pose.vecPosition[2] = eventHooks_.getPoseY();
+
+	// add a little movement so it doesn't sleep
+	pose.vecPosition[0] += 0.005f * cos(0.025f * frame_number_);
+	
 
 	// The pose we provided is valid.
 	// This should be set is
