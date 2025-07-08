@@ -218,7 +218,7 @@ void Configuration::Init(
 		top[1]    = -1.054743;
 		bottom[1] =  1.056776;
 
-		InitQuest3Resolution(qualityType);
+		InitHpG2Resolution(qualityType);
 		break;
 
 	case HeadsetType::QUEST3:
@@ -246,7 +246,7 @@ void Configuration::Init(
 		top[1] = -1.428148f;
 		bottom[1] = 0.965689f;
 
-		InitHpG2Resolution(qualityType);
+		InitQuest3Resolution(qualityType);
 		break;
 
 	case HeadsetType::QUEST_PRO:
