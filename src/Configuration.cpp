@@ -221,6 +221,35 @@ void Configuration::Init(
 		InitHpG2Resolution(qualityType);
 		break;
 
+	case HeadsetType::HP_G2_ASYM:
+		fpsRender = 90;
+
+		///////////////////////////////////////////////////
+		// G2 Issue test
+		// views[0].fov.angleLeft = -0.859543;
+		// views[0].fov.angleRight = 0.779103;
+		// views[0].fov.angleUp = 0.809881;
+		// views[0].fov.angleDown = -0.810649;
+		// 
+		// views[1].fov.angleLeft = -0.781263;
+		// views[1].fov.angleRight = 0.858322;
+		// views[1].fov.angleUp = 0.810965;
+		// views[1].fov.angleDown = -0.809480;
+		///////////////////////////////////////////////////
+
+		left[0] = tan(-0.859543);
+		right[0] = tan(0.779103);
+		top[0] = tan(-0.810649);
+		bottom[0] = tan(0.809881);
+
+		left[1] = tan(-0.781263);
+		right[1] = tan(0.858322);
+		top[1] = tan(-0.809480);
+		bottom[1] = tan(0.810965);
+
+		InitHpG2Resolution(qualityType);
+		break;
+
 	case HeadsetType::QUEST3:
 		fpsRender = 72;
 

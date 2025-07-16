@@ -11,6 +11,7 @@ enum HeadsetType
 	PIMAX_8K_X_LARGE,
 	WMR_EMULATOR,
 	HP_G2,
+	HP_G2_ASYM,
 	NUMBER_OF_HEADSETS
 };
 

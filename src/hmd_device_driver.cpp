@@ -96,6 +96,9 @@ MyHMDControllerDeviceDriver::MyHMDControllerDeviceDriver() {
 	else if (headset_type_str == "HP_G2") {
 		headsetType = HeadsetType::HP_G2;
 	}
+	else if (headset_type_str == "HP_G2_ASYM") {
+		headsetType = HeadsetType::HP_G2_ASYM;
+	}
 	else if (headset_type_str == "QUEST_PRO") {
 		headsetType = HeadsetType::QUEST_PRO;
 	}
