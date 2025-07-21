@@ -224,8 +224,8 @@ void Configuration::Init(
 	case HeadsetType::HP_G2_ASYM:
 		fpsRender = 90;
 
+
 		///////////////////////////////////////////////////
-		// G2 Issue test
 		// views[0].fov.angleLeft = -0.859543;
 		// views[0].fov.angleRight = 0.779103;
 		// views[0].fov.angleUp = 0.809881;
@@ -236,16 +236,49 @@ void Configuration::Init(
 		// views[1].fov.angleUp = 0.810965;
 		// views[1].fov.angleDown = -0.809480;
 		///////////////////////////////////////////////////
+		// Sobo
+		//left[0] = tan(-0.859543);
+		//right[0] = tan(0.779103);
+		//top[0] = tan(-0.810649);
+		//bottom[0] = tan(0.809881);
+		//left[1] = tan(-0.781263);
+		//right[1] = tan(0.858322);
+		//top[1] = tan(-0.809480);
+		//bottom[1] = tan(0.810965);
 
-		left[0] = tan(-0.859543);
-		right[0] = tan(0.779103);
-		top[0] = tan(-0.810649);
-		bottom[0] = tan(0.809881);
+		///////////////////////////////////////////////////
+		//VR: views[0].fov.angleLeft : -0.862011
+		//VR: views[0].fov.angleRight : 0.781368
+		//VR: views[0].fov.angleUp : 0.815872
+		//VR: views[0].fov.angleDown : -0.809352
+		// 
+		//VR: views[1].fov.angleLeft : -0.780843
+		//VR: views[1].fov.angleRight : 0.862827
+		//VR: views[1].fov.angleUp : 0.813915
+		//VR: views[1].fov.angleDown : -0.811133
+		// 
+		//VR: center left : [-0.080769, 0.006529]
+		//VR: center right : [0.082110, 0.002787]
+		///////////////////////////////////////////////////
+		// Topo
+		left[0] = tan(-0.862011);
+		right[0] = tan(0.781368);
+		top[0] = tan(-0.809352);
+		bottom[0] = tan(0.815872);
+		left[1] = tan(-0.780843);
+		right[1] = tan(0.862827);
+		top[1] = tan(-0.811133);
+		bottom[1] = tan(0.813915);
 
-		left[1] = tan(-0.781263);
-		right[1] = tan(0.858322);
-		top[1] = tan(-0.809480);
-		bottom[1] = tan(0.810965);
+
+		//left[0] *= 0.5f;
+		//right[0] *= 0.5f;
+		//top[0] *= 0.5f;
+		//bottom[0] *= 0.5f;
+		//left[1] *= 0.5f;
+		//right[1] *= 0.5f;
+		//top[1] *= 0.5f;
+		//bottom[1] *= 0.5f;
 
 		InitHpG2Resolution(qualityType);
 		break;
