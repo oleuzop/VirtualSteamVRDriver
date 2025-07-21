@@ -33,28 +33,28 @@ void Configuration::InitHpG2Resolution(const QualityType& qualityType)
 	switch (qualityType)
 	{
 	case QualityType::POTATO:
-		resRenderX = int(2688 * 0.47692307692f);
-		resRenderY = int(2784 * 0.47692307692f);
+		resRenderX = int(3172 * 0.47692307692f);
+		resRenderY = int(3100 * 0.47692307692f);
 		break;
 	case QualityType::LOW:
-		resRenderX = int(2688 * 0.56923076923f);
-		resRenderY = int(2784 * 0.56923076923f);
+		resRenderX = int(3172 * 0.56923076923f);
+		resRenderY = int(3100 * 0.56923076923f);
 		break;
 	case QualityType::MEDIUM:
-		resRenderX = int(2688 * 0.66153846153f);
-		resRenderY = int(2784 * 0.66153846153f);
+		resRenderX = int(3172 * 0.66153846153f);
+		resRenderY = int(3100 * 0.66153846153f);
 		break;
 	case QualityType::HIGH:
-		resRenderX = int(2688 * 0.81538461538f);
-		resRenderY = int(2784 * 0.81538461538f);
+		resRenderX = int(3172 * 0.81538461538f);
+		resRenderY = int(3100 * 0.81538461538f);
 		break;
 	case QualityType::ULTRA:
-		resRenderX = int(2688 * 0.87692307692f);
-		resRenderY = int(2784 * 0.87692307692f);
+		resRenderX = int(3172 * 0.87692307692f);
+		resRenderY = int(3100 * 0.87692307692f);
 		break;
 	case QualityType::GODLIKE:
-		resRenderX = 2688;
-		resRenderY = 2784;
+		resRenderX = 3172;
+		resRenderY = 3100;
 		break;
 	}
 }
