@@ -153,33 +153,33 @@ void Configuration::InitPimaxCrystalResolution(const QualityType& qualityType)
 	}
 }
 
-void Configuration::InitPimax8KXResolution(const QualityType& qualityType)
+void Configuration::InitPimax8KResolution(const QualityType& qualityType)
 {
 	switch (qualityType)
 	{
 	case QualityType::POTATO:
-		resRenderX = int(4622 * 0.47692307692f);
-		resRenderY = int(3948 * 0.47692307692f);
+		resRenderX = int(2656 * 0.47692307692f);
+		resRenderY = int(2244 * 0.47692307692f);
 		break;
 	case QualityType::LOW:
-		resRenderX = int(4622 * 0.56923076923f);
-		resRenderY = int(3948 * 0.56923076923f);
+		resRenderX = int(2656 * 0.56923076923f);
+		resRenderY = int(2244 * 0.56923076923f);
 		break;
 	case QualityType::MEDIUM:
-		resRenderX = int(4622 * 0.66153846153f);
-		resRenderY = int(3948 * 0.66153846153f);
+		resRenderX = int(2656 * 0.66153846153f);
+		resRenderY = int(2244 * 0.66153846153f);
 		break;
 	case QualityType::HIGH:
-		resRenderX = int(4622 * 0.81538461538f);
-		resRenderY = int(3948 * 0.81538461538f);
+		resRenderX = int(2656 * 0.81538461538f);
+		resRenderY = int(2244 * 0.81538461538f);
 		break;
 	case QualityType::ULTRA:
-		resRenderX = int(4622 * 0.87692307692f);
-		resRenderY = int(3948 * 0.87692307692f);
+		resRenderX = int(2656 * 0.87692307692f);
+		resRenderY = int(2244 * 0.87692307692f);
 		break;
 	case QualityType::GODLIKE:
-		resRenderX = 4622;
-		resRenderY = 3948;
+		resRenderX = 2656;
+		resRenderY = 2244;
 		break;
 	}
 }
@@ -382,73 +382,45 @@ void Configuration::Init(
 		//    bottom:      -1.274264
 		//    top:          1.274264
 
-		left[0] = -1.264092f;
-		right[0] = 0.889501f;
-		top[0] = -1.274264f;
+		left[0] =  -1.264092f;
+		right[0] =  0.889501f;
+		top[0] =   -1.274264f;
 		bottom[0] = 1.274264f;
 
-		left[1] = -0.889501f;
-		right[1] = 1.264092f;
-		top[1] = -1.274264f;
+		left[1] =  -0.889501f;
+		right[1] =  1.264092f;
+		top[1] =   -1.274264f;
 		bottom[1] = 1.274264f;
 
 		InitPimaxCrystalResolution(qualityType);
 		break;
 
-	case HeadsetType::PIMAX_8K_X_NORMAL:
+	case HeadsetType::PIMAX_8K_NORMAL:
 		fpsRender = 90;
 
-		//Left eye head FOV:
-		//    left:       -70.14 deg
-		//    right:       41.47 deg
-		//    bottom:     -51.35 deg
-		//    top:         51.35 deg
+		//Left eye raw LRBT values:
+		//    left:        -1.742203
+		//    right:        1.346154
+		//    bottom:      -1.306135
+		//    top:          1.306135
 		//
-		//Right eye head FOV:
-		//    left:       -41.47 deg
-		//    right:       70.14 deg
-		//    bottom:     -51.35 deg
-		//    top:         51.35 deg
+		//Right eye raw LRBT values:
+		//    left:        -1.346154
+		//    right:        1.742203
+		//    bottom:      -1.306135
+		//    top:          1.306135
 
-		left[0]   = -70.14f * M_PI / 180.0f;
-		right[0]  =  41.47f * M_PI / 180.0f;
-		top[0]    = -51.35f * M_PI / 180.0f;
-		bottom[0] =  51.35f * M_PI / 180.0f;
+		left[0]   = -1.742203f;
+		right[0]  =  1.346154f;
+		top[0]    = -1.306135f;
+		bottom[0] =  1.306135f;
 
-		left[1]   = -41.47 * M_PI / 180.0f;
-		right[1]  =  70.14 * M_PI / 180.0f;
-		top[1]    = -51.35 * M_PI / 180.0f;
-		bottom[1] =  51.35 * M_PI / 180.0f;
+		left[1]   = -1.346154;
+		right[1]  =  1.742203;
+		top[1]    = -1.306135;
+		bottom[1] =  1.306135;
 
-		InitPimax8KXResolution(qualityType);
-		break;
-
-	case HeadsetType::PIMAX_8K_X_LARGE:
-		fpsRender = 90;
-
-		//Left eye head FOV:
-		//    left:       -80.14 deg
-		//    right:       41.45 deg
-		//    bottom:     -51.35 deg
-		//    top:         51.35 deg
-		//
-		//Right eye head FOV:
-		//    left:       -41.45 deg
-		//    right:       80.14 deg
-		//    bottom:     -51.35 deg
-		//    top:         51.35 deg
-
-		left[0]   = -80.14f * M_PI / 180.0f;
-		right[0]  = 41.47f * M_PI / 180.0f;
-		top[0]    = -51.35f * M_PI / 180.0f;
-		bottom[0] = 51.35f * M_PI / 180.0f;
-
-		left[1]   = -41.47 * M_PI / 180.0f;
-		right[1]  = 80.14 * M_PI / 180.0f;
-		top[1]    = -51.35 * M_PI / 180.0f;
-		bottom[1] = 51.35 * M_PI / 180.0f;
-
-		InitPimax8KXResolution(qualityType);
+		InitPimax8KResolution(qualityType);
 		break;
 
 	case HeadsetType::WMR_EMULATOR:

@@ -32,7 +32,7 @@ git submodule update --init --recursive
 5. Inside ```C:\Program Files (x86)\Steam\steamapps\common\SteamVR\drivers\simplehmd\resources\settings\default.vrsettings``` it's possible to find which headset and resolution is chosen.
 ```
 	"simplehmd_display": {
-	    "headset_type": "QUEST3",         <== QUEST3/HP_G2/PICO4/PIMAX_CRYSTAL/PIMAX_8K_X_NORMAL/PIMAX_8K_X_LARGE/WMR_EMULATOR
+	    "headset_type": "QUEST3",         <== QUEST3/HP_G2/PICO4/PIMAX_CRYSTAL/PIMAX_8K_NORMAL/WMR_EMULATOR
 	    "quality_type": "POTATO",         <== POTATO/LOW/MEDIUM/HIGH/ULTRA/GODLIKE
 	    "resolution_factor": 0.666666667  <== Resolution factor multiplyier (1.0 is no change)
 	}

@@ -7,8 +7,7 @@ enum HeadsetType
 	QUEST_PRO,
 	PICO4,
 	PIMAX_CRYSTAL,
-	PIMAX_8K_X_NORMAL,
-	PIMAX_8K_X_LARGE,
+	PIMAX_8K_NORMAL,
 	WMR_EMULATOR,
 	HP_G2,
 	HP_G2_ASYM,
@@ -54,7 +53,7 @@ private:
 	void InitQuest3Resolution(const QualityType& qualityType);
 	void InitPico4Resolution(const QualityType& qualityType);
 	void InitPimaxCrystalResolution(const QualityType& qualityType);
-	void InitPimax8KXResolution(const QualityType& qualityType);	
+	void InitPimax8KResolution(const QualityType& qualityType);
 
 private:
 	int fpsRender;
