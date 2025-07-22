@@ -319,7 +319,12 @@ vr::DriverPose_t MyHMDControllerDeviceDriver::GetPose()
 	pose.qDriverFromHeadRotation.w = 1.f;
 
 	float heading = eventHooks_.getHeading();
+
+	// add a little movement so it doesn't sleep
+//#define HAS_PERPETUAL_MOVEMENT
+#ifdef HAS_PERPETUAL_MOVEMENT
 	heading += 1.0f * sin(0.0125f * frame_number_);
+#endif
 
 	pose.qRotation = CreateQuaternionFromHeadingAndPitch(
 		heading,
@@ -330,8 +335,9 @@ vr::DriverPose_t MyHMDControllerDeviceDriver::GetPose()
 	pose.vecPosition[1] = 1.0f;
 	pose.vecPosition[2] = eventHooks_.getPoseY();
 
-	// add a little movement so it doesn't sleep
+#ifdef HAS_PERPETUAL_MOVEMENT
 	pose.vecPosition[0] += 0.005f * cos(0.025f * frame_number_);
+#endif
 	
 
 	// The pose we provided is valid.
