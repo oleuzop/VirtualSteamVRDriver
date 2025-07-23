@@ -423,6 +423,34 @@ void Configuration::Init(
 		InitPimax8KResolution(qualityType);
 		break;
 
+	case HeadsetType::PIMAX_8K_PP:
+		fpsRender = 90;
+
+		//Left eye raw LRBT values:
+		//    left:        -2.769231
+		//    right:        0.945419
+		//    bottom:      -1.635803
+		//    top:          1.635803
+		//
+		//Right eye raw LRBT values:
+		//    left:        -0.945419
+		//    right:        2.769231
+		//    bottom:      -1.635803
+		//    top:          1.635803
+
+		left[0]   = -2.769231;
+		right[0]  =  0.945419;
+		top[0]    = -1.635803;
+		bottom[0] =  1.635803;
+
+		left[1]   = -0.945419;
+		right[1]  =  2.769231;
+		top[1]    = -1.635803;
+		bottom[1] =  1.635803;
+
+		InitPimax8KResolution(qualityType);
+		break;
+
 	case HeadsetType::WMR_EMULATOR:
 		fpsRender = 90;
 
