@@ -324,7 +324,7 @@ vr::DriverPose_t MyHMDControllerDeviceDriver::GetPose()
 	float heading = eventHooks_.getHeading();
 
 	// add a little movement so it doesn't sleep
-//#define HAS_PERPETUAL_MOVEMENT
+#define HAS_PERPETUAL_MOVEMENT
 #ifdef HAS_PERPETUAL_MOVEMENT
 	heading += 1.0f * sin(0.0125f * frame_number_);
 #endif
